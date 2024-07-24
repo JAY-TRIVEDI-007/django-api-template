@@ -1,0 +1,12 @@
+{
+  "DEBUG": false,
+  "DJANGO_DOMAIN": "",
+  "DJANGO_SITE_NAME": "",
+  "DJANGO_ADMIN_URL": "admin/",
+  "DJANGO_ALLOWED_HOST": "",
+  "EMAIL": {
+    "EMAIL_HOST": "smtp.gmail.com",
+    "EMAIL_PORT": 587,
+    "EMAIL_USE_TLS": true
+  }
+}
