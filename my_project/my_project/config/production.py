@@ -1,18 +1,17 @@
 # ruff: noqa: E501
 from .base import *  # noqa: F403
 from .base import DATABASES
-from .base import INSTALLED_APPS
 
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = env("DJANGO_SECRET_KEY")
-# https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = env.as_list("DJANGO_ALLOWED_HOSTS", default=["example.com"])
+SECRET_KEY = env.get("DJANGO_SECRET_KEY", "")
+DEBUG = False
+ALLOWED_HOSTS = env.get('DJANGO_ALLOWED_HOST').split(";") if env.get('DJANGO_ALLOWED_HOST') is not None else []
 
 # DATABASES
 # ------------------------------------------------------------------------------
-DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
+# DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 
 
 # STATIC & MEDIA
@@ -30,7 +29,7 @@ STORAGES = {
 # ADMIN
 # ------------------------------------------------------------------------------
 # Django Admin URL regex.
-ADMIN_URL = env("DJANGO_ADMIN_URL")
+ADMIN_URL = env.get("DJANGO_ADMIN_URL", "admin/")
 
 
 # LOGGING

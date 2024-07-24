@@ -30,10 +30,9 @@ SECRET_KEY = 'django-insecure-*uslzd&c*gj7-)j*kp00ta-e4$f-kh4d1u@d9a6on)lm^7+)br
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.as_bool('DEBUG') if env.as_bool('DEBUG') is not None else False
 
-ALLOWED_HOSTS = env.get('DJANGO_ALLOWED_HOST').split(";")
 
-DOMAIN = env.get("DJANGO_DOMAIN", "")
-SITE_NAME = env.get("DJANGO_SITE_NAME", "")
+DOMAIN = env.get("DJANGO_DOMAIN", default="")
+SITE_NAME = env.get("DJANGO_SITE_NAME", default="")
 
 # Application definition
 
@@ -43,21 +42,33 @@ DJANGO_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles'
 ]
 
-THIRD_PARTY_APPS = []
+THIRD_PARTY_APPS = [
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
+    'corsheaders',
+    'djoser',
+]
 
-INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS
+PROJECT_APPS = [
+    'accounts'
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -67,8 +78,28 @@ REST_FRAMEWORK = {
         # added simple jwt authclass for jwt token
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    'EXCEPTION_HANDLER': 'event_app_api.exceptions.api_exception_handler',
+    'EXCEPTION_HANDLER': 'my_project.exceptions.api_exception_handler',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+}
+
+DJOSER = {
+    "LOGIN_FIELD": "email",
+    "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
+    "ACTIVATION_URL": "activate/{uid}/{token}",
+    "SEND_ACTIVATION_EMAIL": False,
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
+    "INVITATION_URL": "acceptinvite/{uid}/{token}",
+    "EMAIL": {
+        "password_reset": "accounts.email.PasswordResetEmail",
+    },
+    "PERMISSIONS": {
+        "username_reset": ["accounts.permissions.DenyAny"],
+        "user_create": ["accounts.permissions.DenyAny"],
+        "user_delete": ["djoser.permissions.CurrentUserOrAdmin"],
+    },
+    "SERIALIZERS": {
+        "current_user": "accounts.serializers.UserSerializer",
+    },
 }
 
 # AUTHENTICATION
@@ -78,11 +109,7 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend"
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-user-model
-AUTH_USER_MODEL = "users.User"
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-LOGIN_URL = "account_login"
+AUTH_USER_MODEL = "accounts.User"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
