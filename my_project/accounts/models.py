@@ -3,26 +3,27 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.mail import send_mail
-from django.utils.translation import gettext_lazy
+from django.utils.translation import gettext_lazy as _
+from .manager import UserManager
 
 
 class User(PermissionsMixin, AbstractBaseUser):
     id = models.AutoField(primary_key=True)
     username_validator = UnicodeUsernameValidator()
     username = models.CharField(
-        gettext_lazy("Username"),
+        _("Username"),
         max_length=255,
         validators=[username_validator],
         blank=True,
         null=True,
     )
 
-    first_name = models.CharField(gettext_lazy("First Name"), max_length=255, blank=True, null=True)
-    last_name = models.CharField(gettext_lazy("Last Name"), max_length=255, blank=True, null=True)
+    first_name = models.CharField(_("First Name"), max_length=255, blank=True, null=True)
+    last_name = models.CharField(_("Last Name"), max_length=255, blank=True, null=True)
     is_active = models.BooleanField(
-        gettext_lazy("Active"),
+        _("Active"),
         default=True,
-        help_text=gettext_lazy("Designates whether this user should be treated as active"),
+        help_text=_("Designates whether this user should be treated as active"),
     )
     # allow non-unique emails
     email = models.EmailField("Email address", blank=True, unique=True)
@@ -34,6 +35,8 @@ class User(PermissionsMixin, AbstractBaseUser):
 
     USERNAME_FIELD = "email"
     EMAIL_FIELD = "email"
+
+    objects = UserManager()
 
     @property
     def is_django_user(self):

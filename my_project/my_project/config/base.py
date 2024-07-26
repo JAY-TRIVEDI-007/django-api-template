@@ -98,8 +98,13 @@ DJOSER = {
         "user_delete": ["djoser.permissions.CurrentUserOrAdmin"],
     },
     "SERIALIZERS": {
-        "current_user": "accounts.serializers.UserSerializer",
+        "user": "accounts.serializers.UserSerializer",
+        "current_user": "accounts.serializers.UserSerializer"
     },
+}
+
+SIMPLE_JWT = {
+   'AUTH_HEADER_TYPES': ('JWT',),
 }
 
 # AUTHENTICATION
