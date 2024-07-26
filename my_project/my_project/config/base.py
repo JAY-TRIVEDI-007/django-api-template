@@ -51,6 +51,7 @@ THIRD_PARTY_APPS = [
     'django_filters',
     'corsheaders',
     'djoser',
+    'drf_spectacular'
 ]
 
 PROJECT_APPS = [
@@ -80,8 +81,10 @@ REST_FRAMEWORK = {
     ),
     'EXCEPTION_HANDLER': 'my_project.exceptions.api_exception_handler',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
 }
 
+# User authentication API library
 DJOSER = {
     "LOGIN_FIELD": "email",
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
@@ -148,6 +151,18 @@ AUTH_PASSWORD_VALIDATORS = [
 ROOT_URLCONF = 'my_project.urls'
 
 WSGI_APPLICATION = 'my_project.wsgi.application'
+
+# Documentation
+
+SPECTACULAR_SETTINGS = {
+    'AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.JWTAuthentication',
+    ),
+    'SWAGGER_UI_SETTINGS': {
+        'persistAuthorization': True
+    }
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

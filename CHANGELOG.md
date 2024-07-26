@@ -21,12 +21,19 @@ Additional labels for pre-release and build metadata are available as extensions
 
 ### Added
 
+- Django REST Framework (drf)
+- dynaconf
+- CORS
+- Whitenoise static file support
+- Djoser
+- JWT
+
 ### Changed
 
 ### Fixed
 
 
-## [1.0.0] - YYYYY-MM-DD
+## [1.0.0] - YYYY-MM-DD
 
 ### Added
 
