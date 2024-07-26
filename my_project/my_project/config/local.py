@@ -4,9 +4,7 @@ from .base import env
 
 DEBUG = True
 
-SECRET_KEY = env(
-    "DJANGO_SECRET_KEY",
-    default="Da71JRBrtu9IoVkgitcuw8DFOyTbX8SWv2BE8zYyDdvCe5SG6l30gHQHKwB2R55P",
-)
+SECRET_KEY = env.get("DJANGO_SECRET_KEY", default="changethis")
 
+# NOTE: All addresses included to expose the development server to private network
 ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]

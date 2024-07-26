@@ -5,13 +5,9 @@ from .base import DATABASES
 # GENERAL
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = env.get("DJANGO_SECRET_KEY", "")
+SECRET_KEY = env.get("DJANGO_SECRET_KEY", "changethis")
 DEBUG = False
 ALLOWED_HOSTS = env.get('DJANGO_ALLOWED_HOST').split(";") if env.get('DJANGO_ALLOWED_HOST') is not None else []
-
-# DATABASES
-# ------------------------------------------------------------------------------
-# DATABASES["default"]["CONN_MAX_AGE"] = env.int("CONN_MAX_AGE", default=60)
 
 
 # STATIC & MEDIA
