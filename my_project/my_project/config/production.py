@@ -28,6 +28,12 @@ STORAGES = {
 ADMIN_URL = env.get("DJANGO_ADMIN_URL", "admin/")
 
 
+# DATABASES
+# ------------------------------------------------------------------------------
+DATABASES["default"]["CONN_MAX_AGE"] = env.get("DB.CONN_MAX_AGE", 60)
+DATABASES["default"]["CONN_HEALTH_CHECKS"] = env.get("DB.CONN_HEALTH_CHECKS", False)
+
+
 # LOGGING
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging

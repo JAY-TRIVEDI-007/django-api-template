@@ -75,7 +75,8 @@ MIDDLEWARE = [
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        # "rest_framework.authentication.BasicAuthentication",
         # added simple jwt authclass for jwt token
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
@@ -96,14 +97,13 @@ DJOSER = {
         "password_reset": "accounts.email.PasswordResetEmail",
     },
     "PERMISSIONS": {
-        "username_reset": ["accounts.permissions.DenyAny"],
-        "user_create": ["accounts.permissions.DenyAny"],
         "user_delete": ["djoser.permissions.CurrentUserOrAdmin"],
     },
     "SERIALIZERS": {
         "user": "accounts.serializers.UserSerializer",
         "current_user": "accounts.serializers.UserSerializer"
     },
+    "LOGOUT_ON_PASSWORD_CHANGE": True
 }
 
 SIMPLE_JWT = {
@@ -198,14 +198,17 @@ TEMPLATES = [
 ]
 
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': env.get('DB.NAME'),
+        'USER': env.get('DB.USER'),
+        'PASSWORD': env.get('DB.PASSWORD'),
+        'HOST': env.get('DB.HOST'),
+        'PORT': env.get('DB.PORT'),
     }
 }
 
