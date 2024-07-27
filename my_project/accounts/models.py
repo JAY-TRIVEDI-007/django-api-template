@@ -18,8 +18,8 @@ class User(PermissionsMixin, AbstractBaseUser):
         null=True,
     )
 
-    first_name = models.CharField(_("First Name"), max_length=255, blank=True, null=True)
-    last_name = models.CharField(_("Last Name"), max_length=255, blank=True, null=True)
+    first_name = models.CharField(_("First Name"), max_length=255, blank=False, null=False)
+    last_name = models.CharField(_("Last Name"), max_length=255, blank=False, null=False)
     is_active = models.BooleanField(
         _("Active"),
         default=True,
@@ -37,6 +37,7 @@ class User(PermissionsMixin, AbstractBaseUser):
     EMAIL_FIELD = "email"
 
     objects = UserManager()
+    REQUIRED_FIELDS = ["first_name", "last_name"]
 
     @property
     def is_django_user(self):
