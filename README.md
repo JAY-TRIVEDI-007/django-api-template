@@ -14,7 +14,7 @@ Django REST Framework cookiecutter template
 8. Docker support
 9. Kubernetes support
 
-## Other Django cookiecutter templates
+## Inspired by these awesome Django cookiecutter templates
 
 - [cookiecutter/cookiecutter-django](https://github.com/cookiecutter/cookiecutter-django/)
 - [Vi6hal/django-cookiecutter-rest](https://github.com/Vi6hal/django-cookiecutter-rest/)

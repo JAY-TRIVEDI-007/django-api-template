@@ -4,8 +4,6 @@ from .base import DATABASES
 
 # GENERAL
 # ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = env.get("DJANGO_SECRET_KEY", "changethis")
 DEBUG = False
 ALLOWED_HOSTS = env.get('DJANGO_ALLOWED_HOST').split(";") if env.get('DJANGO_ALLOWED_HOST') is not None else []
 
@@ -16,16 +14,12 @@ STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
+    { % if cookiecutter.use_whitenoise == 'y' %}
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
-    },
+    }
+    {% endif %}
 }
-
-
-# ADMIN
-# ------------------------------------------------------------------------------
-# Django Admin URL regex.
-ADMIN_URL = env.get("DJANGO_ADMIN_URL", "admin/")
 
 
 # DATABASES

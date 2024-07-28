@@ -1,0 +1,12 @@
+{
+  "DEBUG": false,
+  "DJANGO_DOMAIN": "{{ cookiecutter.domain_name }}",
+  "DJANGO_SITE_NAME": "{{ cookiecutter.site_name }}",
+  "DJANGO_ADMIN_URL": "admin/",
+  "DJANGO_ALLOWED_HOST": "{{ cookiecutter.domain_name }}",
+  "EMAIL": {
+    "EMAIL_HOST": "smtp.gmail.com",
+    "EMAIL_PORT": 587,
+    "EMAIL_USE_TLS": true
+  }
+}

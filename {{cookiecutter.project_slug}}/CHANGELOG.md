@@ -26,9 +26,15 @@ Additional labels for pre-release and build metadata are available as extensions
 ### Fixed
 
 
-## [1.0.0] - YYYYY-MM-DD
+## [{{ cookiecutter.version }}] - {% now 'local', '%Y-%m-%d' %}
 
 ### Added
+
+1. DRF
+2. Djoser
+3. accounts app for authentication
+4. drf-spectacular for API documentation (swagger UI)
+5. Docker deployment
 
 ### Changed
 

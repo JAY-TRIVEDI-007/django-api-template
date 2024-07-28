@@ -1,5 +1,5 @@
 """
-URL configuration for my_project project.
+URL configuration for {{cookiecutter.project_slug}} project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/auth/", include("djoser.urls.base")),
+    {% if cookiecutter.authentication_method == 'token' %}
     path("api/auth/", include("djoser.urls.authtoken")),
-    path("api/auth/", include("djoser.urls.jwt")),
-    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
-    path('api/docs/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+    {% endif %}
+    {% if cookiecutter.authentication_method == 'jwt' %}
+    path("api/auth/", include("djoser.urls.jwt"))
+    {% endif %}
 ]

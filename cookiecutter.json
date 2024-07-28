@@ -1,0 +1,23 @@
+{
+  "project_name": "My DRF Project",
+  "project_slug": "{{ cookiecutter.project_name.lower()|replace(' ', '_')|replace('-', '_')|replace('.', '_')|trim() }}",
+  "description": "Backend API server for {{ cookiecutter.project_name }}",
+  "author_name": "Jay Trivedi",
+  "email": "email@example.com",
+  "version": "0.1.0",
+  "open_source_license": [
+    "MIT",
+    "BSD",
+    "GPLv3",
+    "Apache Software License 2.0",
+    "Not open source"
+  ],
+  "domain_name": "example.com",
+  "site_name": "www.example.com",
+  "timezone": "UTC",
+  "use_whitenoise": "n",
+  "is_documentation_dev_only": "y",
+  "authentication_method": ["token", "jwt"],
+  "mysql_version": ["9.0", "8.4", "8.0"],
+  "use_nginx_proxy": "y"
+}
