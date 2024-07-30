@@ -21,12 +21,7 @@ Additional labels for pre-release and build metadata are available as extensions
 
 ### Added
 
-- Django REST Framework (drf)
-- dynaconf
-- CORS
-- Whitenoise static file support
-- Djoser
-- JWT
+- add ansible
 
 ### Changed
 
@@ -36,6 +31,17 @@ Additional labels for pre-release and build metadata are available as extensions
 ## [1.0.0] - YYYY-MM-DD
 
 ### Added
+
+- Django REST Framework (drf)
+- dynaconf
+- CORS
+- Whitenoise static file support
+- Djoser
+- JWT
+- Docker support
+- Option to create virtual env and install deps
+- Option to initialize project with Git and initial commit
+- Optional use_proxy
 
 ### Changed
 

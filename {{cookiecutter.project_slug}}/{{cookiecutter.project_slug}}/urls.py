@@ -16,14 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/auth/", include("djoser.urls.base")),
-    {% if cookiecutter.authentication_method == 'token' %}
+{% if cookiecutter.authentication_method == 'token' %}
     path("api/auth/", include("djoser.urls.authtoken")),
-    {% endif %}
-    {% if cookiecutter.authentication_method == 'jwt' %}
+{% endif %}
+{% if cookiecutter.authentication_method == 'jwt' %}
     path("api/auth/", include("djoser.urls.jwt"))
-    {% endif %}
+{% endif %}
+{% if cookiecutter.is_documentation_dev_only == 'n' %}
+    path("", include("api_docs.urls"))
+{% endif %}
 ]
+{% if cookiecutter.is_documentation_dev_only == 'y' %}
+if settings.DEBUG:
+    urlpatterns += [path("", include("api_docs.urls"))]
+{% endif %}

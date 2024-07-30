@@ -32,7 +32,7 @@ SECRET_KEY = env.get("DJANGO_SECRET_KEY", "changethis")
 DEBUG = env.as_bool('DEBUG') if env.as_bool('DEBUG') is not None else False
 
 
-DOMAIN = env.get("DJANGO_DOMAIN", default="{{cookiecutter.domain}}")
+DOMAIN = env.get("DJANGO_DOMAIN", default="{{cookiecutter.domain_name}}")
 SITE_NAME = env.get("DJANGO_SITE_NAME", default="{{cookiecutter.site_name}}")
 
 # Application definition
@@ -52,16 +52,16 @@ THIRD_PARTY_APPS = [
     'django_filters',
     'corsheaders',
     'djoser',
-    {% if cookiecutter.is_documentation_dev_only == 'n' %}
+{% if cookiecutter.is_documentation_dev_only == 'n' %}
     'drf_spectacular'
-    {% endif %}
+{% endif %}
 ]
 
 PROJECT_APPS = [
     'accounts',
-    {% if cookiecutter.is_documentation_dev_only == 'n' %}
+{% if cookiecutter.is_documentation_dev_only == 'n' %}
     'api_docs',
-    {% endif %}
+{% endif %}
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -75,27 +75,25 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    {% if cookiecutter.use_whitenoise == 'y' %}
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    {% endif %}
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": ("rest_framework.renderers.JSONRenderer",),
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        {% if cookiecutter.authentication_method == 'token' %}
+{% if cookiecutter.authentication_method == 'token' %}
         "rest_framework.authentication.TokenAuthentication",
-        {% endif %}
-        {% if cookiecutter.authentication_method == 'jwt' %}
+{% endif %}
+{% if cookiecutter.authentication_method == 'jwt' %}
         # added simple jwt authclass for jwt token
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-        {% endif %}
+{% endif %}
     ),
     'EXCEPTION_HANDLER': '{{cookiecutter.project_slug}}.exceptions.api_exception_handler',
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
-    {% if cookiecutter.is_documentation_dev_only == 'n' %}
+{% if cookiecutter.is_documentation_dev_only == 'n' %}
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema'
-    {% endif %}
+{% endif %}
 }
 
 # User authentication API library
@@ -167,7 +165,7 @@ ROOT_URLCONF = '{{cookiecutter.project_slug}}.urls'
 
 WSGI_APPLICATION = '{{cookiecutter.project_slug}}.wsgi.application'
 
-{%- if cookiecutter.is_documentation_dev_only == 'n' %}
+{% if cookiecutter.is_documentation_dev_only == 'n' %}
 # Documentation
 
 SPECTACULAR_SETTINGS = {
@@ -187,9 +185,9 @@ SPECTACULAR_SETTINGS = {
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-STATIC_ROOT = str(BASE_DIR / "staticfiles")
+STATIC_ROOT = str(BASE_DIR / "static")
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [str(BASE_DIR / "static")]
+STATICFILES_DIRS = []
 STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",

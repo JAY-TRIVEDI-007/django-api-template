@@ -24,9 +24,11 @@ MySQL - {{ cookiecutter.mysql_version }}
 
 **Step-1:** python3 manage.py makemigrations
 
-**Step-2:** python3 manage.py migrate
+**Step-2:** python3 manage.py makemigrations accounts
 
-**Step-3:** python3 manage.py runserver
+**Step-3:** python3 manage.py migrate
+
+**Step-4:** python3 manage.py runserver
 
 
 ## Documentation of libraries
@@ -39,3 +41,7 @@ MySQL - {{ cookiecutter.mysql_version }}
 6. [django-cors-headers - PyPI](https://pypi.org/project/django-cors-headers/)
 7. [djoser 2.2.2 documentation](https://djoser.readthedocs.io/en/latest/)
 8. [drf-spectacular documentation](https://drf-spectacular.readthedocs.io/en/latest/)
+
+## Check versions of softwares
+
+1. [End of Life - MySQL](https://endoflife.date/mysql)

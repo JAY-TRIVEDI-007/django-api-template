@@ -11,10 +11,7 @@ ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]
 DATABASES["default"]["HOST"] = "127.0.0.1"
 
 {% if cookiecutter.is_documentation_dev_only == 'y' %}
-
-THIRD_PARTY_APPS += ['drf_spectacular']
-
-PROJECT_APPS += ['api_docs']
+INSTALLED_APPS += ['drf_spectacular', 'api_docs']
 
 REST_FRAMEWORK['DEFAULT_SCHEMA_CLASS'] = 'drf_spectacular.openapi.AutoSchema'
 
