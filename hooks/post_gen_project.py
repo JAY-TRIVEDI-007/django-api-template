@@ -2,7 +2,6 @@ import json
 import os
 import shutil
 import sys
-import venv
 import string
 import random
 
@@ -70,10 +69,17 @@ def setup_dev_environment():
 
     print(f"{INFO}Python version: {python_version[0]}.{python_version[1]}.{python_version[2]}{TERMINATOR}")
     print(f"{INFO}Creating virtual env at '{venv_path}'{TERMINATOR}")
-    venv.create(venv_path, with_pip=True)
+
+    if sys.platform == "win32":
+        os.system("python -m venv venv")
+    else:
+        os.system("python3 -m venv venv")
+
     print(f"{INFO}Installing requirements{TERMINATOR}")
-    os.system(f"{venv_path}/bin/pip install -r requirements.txt")
-    os.system(f"{venv_path}/bin/pip install -r requirements_dev.txt")
+    if sys.platform == "win32":
+        os.system(f"{venv_path}/Scripts/pip install -r requirements_dev.txt")
+    else:
+        os.system(f"{venv_path}/bin/pip install -r requirements_dev.txt")
     print(f"{SUCCESS}Requirements installed{TERMINATOR}")
 
 
@@ -128,7 +134,7 @@ def main():
         os.system(f"git init -q -b main {os.getcwd()}")
         print(f"{SUCCESS}Git init successful.{TERMINATOR}")
 
-    if "{{ cookiecutter.first_commit }}" == "y":
+    if "{{ cookiecutter.initialize_git }}" == "y" and "{{ cookiecutter.first_commit }}" == "y":
         project_name = "{{ cookiecutter.project_name }}"
         os.system(f"git add {os.getcwd()}")
         os.system(f"git commit -m '{project_name} created.'")
