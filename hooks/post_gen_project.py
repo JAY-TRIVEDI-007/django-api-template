@@ -50,9 +50,9 @@ def remove_open_source_license_files():
 
 def rename_example_secrets():
     """
-    Rename example.secrets.json to .secrets.json
+    Rename template.secrets.json to .secrets.json
     """
-    os.rename("example.secrets.json", ".secrets.json")
+    os.rename("template.secrets.json", ".secrets.json")
     os.rename("deployment/django/example.env", "deployment/django/.env")
     os.rename("deployment/database/mysql.env", "deployment/database/.env")
     print(f"{SUCCESS}Secret files renamed.{TERMINATOR}")
