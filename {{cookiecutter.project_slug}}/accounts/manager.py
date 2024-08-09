@@ -13,10 +13,13 @@ class UserManager(BaseUserManager):
         """
         Create and save a User with the given email and password.
         """
+        extra_fields.setdefault("is_staff", True)
+
         if not email:
             raise ValueError(gettext_lazy("The Email must be set"))
         email = self.normalize_email(email)
-        user = self.model(email=email, **extra_fields)
+        username = extra_fields.get("first_name", "")
+        user = self.model(email=email, username=username, **extra_fields)
         if password:
             user.set_password(password)
         user.save()

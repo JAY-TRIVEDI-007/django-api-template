@@ -41,7 +41,10 @@ MySQL - {{ cookiecutter.mysql_version }}
 6. [django-cors-headers - PyPI](https://pypi.org/project/django-cors-headers/)
 7. [djoser 2.2.2 documentation](https://djoser.readthedocs.io/en/latest/)
 8. [drf-spectacular documentation](https://drf-spectacular.readthedocs.io/en/latest/)
+9. [jazzband/django-rest-knox: Authentication Module for django rest auth](https://github.com/jazzband/django-rest-knox?tab=readme-ov-file)
+10. [Django-Rest-Knox](https://jazzband.github.io/django-rest-knox/)
+11. [Authenticate With Djoser - DEV Community](https://dev.to/lyamaa/authenticate-with-djoser-2kf7)
 
-## Check versions of softwares
+## Check versions of software
 
 1. [End of Life - MySQL](https://endoflife.date/mysql)
