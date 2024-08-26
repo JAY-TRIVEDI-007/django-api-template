@@ -111,8 +111,9 @@ DJOSER = {
         "user_delete": ["djoser.permissions.CurrentUserOrAdmin"],
     },
     "SERIALIZERS": {
+        'user_create': 'accounts.serializers.UserCreateSerializer',
         "user": "accounts.serializers.UserSerializer",
-        "current_user": "accounts.serializers.UserSerializer"
+        "current_user": "accounts.serializers.UserSerializer",
     },
     "LOGOUT_ON_PASSWORD_CHANGE": True
 }

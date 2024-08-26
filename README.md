@@ -1,6 +1,6 @@
-# django-api-template
+# Django DRF API project template
 
-Django REST Framework cookiecutter template
+Django REST Framework cookiecutter template. This template have user authentication using djoser.
 
 ## Features
 
@@ -12,7 +12,7 @@ Django REST Framework cookiecutter template
 6. Email support
 7. [API Documentation support - drf-spectacular](https://drf-spectacular.readthedocs.io/en/latest/)
 8. Docker support
-9. Kubernetes support
+9. Kubernetes support (Will be introduce later)
 
 ## Inspired by these awesome Django cookiecutter templates
 
