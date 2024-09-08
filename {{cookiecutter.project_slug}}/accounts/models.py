@@ -33,6 +33,11 @@ class User(PermissionsMixin, AbstractBaseUser):
         default=False,
         help_text="Designates whether the user can log into this admin site.",
     )
+    is_bot = models.BooleanField(
+        "BOT status",
+        default=False,
+        help_text="Designates whether the user is a bot user.",
+    )
 
     USERNAME_FIELD = "username"
     EMAIL_FIELD = "email"
