@@ -4,6 +4,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.core.mail import send_mail
 from django.utils.translation import gettext_lazy as _
+
 from .manager import UserManager
 
 
@@ -14,8 +15,8 @@ class User(PermissionsMixin, AbstractBaseUser):
         _("Username"),
         max_length=255,
         validators=[username_validator],
-        blank=True,
-        null=True,
+        null=False,
+        unique=True,
     )
 
     first_name = models.CharField(_("First Name"), max_length=255, blank=False, null=False)
@@ -32,8 +33,13 @@ class User(PermissionsMixin, AbstractBaseUser):
         default=False,
         help_text="Designates whether the user can log into this admin site.",
     )
+    is_bot = models.BooleanField(
+        "BOT status",
+        default=False,
+        help_text="Designates whether the user is a bot user.",
+    )
 
-    USERNAME_FIELD = "email"
+    USERNAME_FIELD = "username"
     EMAIL_FIELD = "email"
 
     objects = UserManager()

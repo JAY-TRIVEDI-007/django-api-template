@@ -4,6 +4,7 @@
   "DJANGO_SITE_NAME": "{{ cookiecutter.site_name }}",
   "DJANGO_ADMIN_URL": "admin/",
   "DJANGO_ALLOWED_HOST": "{{ cookiecutter.domain_name }}",
+  "DJANGO_ALLOWED_ORIGIN": "https://{{ cookiecutter.domain_name }};http://localhost",
   "EMAIL": {
     "EMAIL_HOST": "smtp.gmail.com",
     "EMAIL_PORT": 587,

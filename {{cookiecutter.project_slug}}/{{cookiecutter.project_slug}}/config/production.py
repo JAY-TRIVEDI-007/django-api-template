@@ -7,6 +7,8 @@ from .base import DATABASES
 DEBUG = False
 ALLOWED_HOSTS = env.get('DJANGO_ALLOWED_HOST').split(";") if env.get('DJANGO_ALLOWED_HOST') is not None else []
 
+CORS_ALLOWED_ORIGINS = env.get('DJANGO_ALLOWED_ORIGIN', []).split(";")
+
 
 # STATIC & MEDIA
 # ------------------------

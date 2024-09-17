@@ -102,7 +102,7 @@ DJOSER = {
     "PASSWORD_RESET_CONFIRM_URL": "password/reset/confirm/{uid}/{token}",
     "ACTIVATION_URL": "activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": False,
-    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": True,
+    "PASSWORD_CHANGED_EMAIL_CONFIRMATION": False,
     "INVITATION_URL": "acceptinvite/{uid}/{token}",
     "EMAIL": {
         "password_reset": "accounts.email.PasswordResetEmail",
@@ -111,8 +111,9 @@ DJOSER = {
         "user_delete": ["djoser.permissions.CurrentUserOrAdmin"],
     },
     "SERIALIZERS": {
+        'user_create': 'accounts.serializers.UserCreateSerializer',
         "user": "accounts.serializers.UserSerializer",
-        "current_user": "accounts.serializers.UserSerializer"
+        "current_user": "accounts.serializers.CurrentUserSerializer",
     },
     "LOGOUT_ON_PASSWORD_CHANGE": True
 }
