@@ -21,8 +21,6 @@ Additional labels for pre-release and build metadata are available as extensions
 
 ### Added
 
-- add ansible
-
 ### Changed
 
 ### Fixed
@@ -46,3 +44,18 @@ Additional labels for pre-release and build metadata are available as extensions
 ### Changed
 
 ### Fixed
+
+## [1.1.0] - 2024-09-17
+
+### Added
+
+- Username update
+
+### Changed
+
+- djoser user serializer updated.
+- User permissions logic.
+
+### Fixed
+
+- CORS bugs fixed.
